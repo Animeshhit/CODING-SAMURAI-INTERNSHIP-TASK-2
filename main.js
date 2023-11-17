@@ -32,8 +32,8 @@ function getTodosAndReturnHtml() {
         <h2>${todo.title}</h2>
         ${
           todo.status == "active"
-            ? `<input type="checkbox" class="myCheckbox" onchange="updateAndUpdateTheTab('3','${todo.id}')">`
-            : `<input type="checkbox" class="myCheckbox" checked onchange="updateAndUpdateTheTab('3','${todo.id}')">`
+            ? `<input type="checkbox" class="myCheckbox" onchange="updateAndUpdateTheTab('1','${todo.id}')">`
+            : `<input type="checkbox" class="myCheckbox" checked onchange="updateAndUpdateTheTab('1','${todo.id}')">`
         }
     </div>`;
     })
@@ -52,7 +52,7 @@ function getActiveTodosReturnHtml() {
     .map((todo) => {
       return `<div class="todo flex items-center justify-between">
       <h2>${todo.title}</h2>
-      <input type="checkbox" class="myCheckbox" onchange="updateAndUpdateTheTab('3','${todo.id}')">
+      <input type="checkbox" class="myCheckbox" onchange="updateAndUpdateTheTab('2','${todo.id}')">
   </div>`;
     })
     .join(" ");
@@ -70,7 +70,10 @@ function getComTodosAndReturnHtml() {
     .map((todo) => {
       return `<div class="todo flex items-center justify-between">
       <h2>${todo.title}</h2>
+      <div class="flex items-center gap-2">
+       <img width=20px" height="20px" src="/assests/deleteIcon.svg"/ alt="delete" onclick="delteTodo('${todo.id}')">
       <input type="checkbox" class="myCheckbox" checked onchange="updateAndUpdateTheTab('3','${todo.id}')">
+      </div>
   </div>`;
     })
     .join(" ");
@@ -100,6 +103,7 @@ function createTodo() {
   InputBox.value = "";
   alert("task added");
   showView(getTodosAndReturnHtml());
+  switchTabAction("1");
 }
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -164,11 +168,23 @@ function updateAndUpdateTheTab(tab_id, task_id) {
 
   localStorage.setItem("todos", JSON.stringify(todos));
 
-  if (tab_id == "1") {
+  updateTab(tab_id);
+}
+
+function updateTab(tab_number) {
+  if (tab_number == "1") {
     showView(getTodosAndReturnHtml());
-  } else if (tab_id == "2") {
+  } else if (tab_number == "2") {
     showView(getActiveTodosReturnHtml());
   } else {
     showView(getComTodosAndReturnHtml());
   }
+}
+
+//delteTodo
+function delteTodo(id) {
+  let todos = getTodosFromStorage();
+  let otherTodos = todos.filter((todo) => todo.id != id);
+  localStorage.setItem("todos", JSON.stringify(otherTodos));
+  updateTab("3");
 }
