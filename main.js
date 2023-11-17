@@ -30,11 +30,16 @@ function getTodosAndReturnHtml() {
     .map((todo) => {
       return `<div class="todo flex items-center justify-between">
         <h2>${todo.title}</h2>
+        <div class="flex items-center gap-2">
+        <img width=20px" height="20px" src="/assests/editIcon.svg"/ alt="edit" onclick="editTodo('${
+          todo.id
+        }','1')">
         ${
           todo.status == "active"
             ? `<input type="checkbox" class="myCheckbox" onchange="updateAndUpdateTheTab('1','${todo.id}')">`
             : `<input type="checkbox" class="myCheckbox" checked onchange="updateAndUpdateTheTab('1','${todo.id}')">`
         }
+        </div>
     </div>`;
     })
     .join(" ");
@@ -146,12 +151,46 @@ function generateUniqueID() {
 
 window.addEventListener("keydown", (e) => {
   if (e.key == "Enter") {
-    createTodo();
+    let btnType = createButton.dataset.type;
+    if (btnType == "create") {
+      createTodo();
+    } else {
+      let newTitle = InputBox.value;
+      if (!newTitle) {
+        return alert("title can't be empty");
+      } else {
+        let todos = getTodosFromStorage();
+        let targetTodo = todos.filter(
+          (todo) => todo.id == createButton.dataset.id
+        )[0];
+        targetTodo.title = newTitle;
+        localStorage.setItem("todos", JSON.stringify(todos));
+        updateTab(createButton.dataset.tabId);
+        setBtntoCreateMode();
+      }
+    }
   }
 });
 
-createButton.addEventListener("click", () => {
-  createTodo();
+createButton.addEventListener("click", (e) => {
+  let btnType = createButton.dataset.type;
+  if (btnType == "create") {
+    createTodo();
+  } else {
+    let newTitle = InputBox.value;
+    if (!newTitle) {
+      return alert("title can't be empty");
+    } else {
+      let todos = getTodosFromStorage();
+      let targetTodo = todos.filter(
+        (todo) => todo.id == createButton.dataset.id
+      )[0];
+      targetTodo.title = newTitle;
+      localStorage.setItem("todos", JSON.stringify(todos));
+      updateTab(createButton.dataset.tabId);
+      setBtntoCreateMode();
+    }
+  }
 });
 
 // update and update the current tab
@@ -187,4 +226,34 @@ function delteTodo(id) {
   let otherTodos = todos.filter((todo) => todo.id != id);
   localStorage.setItem("todos", JSON.stringify(otherTodos));
   updateTab("3");
+}
+
+//edit todo
+function editTodo(id, tab_id) {
+  let todos = getTodosFromStorage();
+  let target = todos.filter((todo) => todo.id == id)[0];
+  InputBox.value = target.title;
+  createButton.dataset.type = "edit";
+  createButton.innerText = "Update";
+  createButton.dataset.id = id;
+  createButton.dataset.tabId = tab_id;
+}
+
+function setBtntoCreateMode() {
+  InputBox.value = "";
+  createButton.dataset.type = "create";
+  createButton.innerHTML = `<svg
+  xmlns="http://www.w3.org/2000/svg"
+  height="24"
+  viewBox="0 -960 960 960"
+  width="24"
+  fill="white"
+>
+  <path
+    d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"
+  />
+</svg>
+<span>Add Task</span>`;
+  createButton.dataset.id = "";
+  createButton.dataset.tabId = "";
 }
