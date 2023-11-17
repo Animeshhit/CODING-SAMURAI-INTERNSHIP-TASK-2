@@ -45,13 +45,28 @@ h6 {
   font-size: 2rem;
   text-align: center;
 }
+@media (max-width: 500px) {
+  .Title {
+    margin-top: 2rem;
+  }
+}
 
+@media (max-width: 600px) {
+  .input_container {
+    flex-direction: column;
+  }
+}
 .main_container {
   width: 100%;
   max-width: 500px;
   display: block;
   margin: 0 auto;
   margin-top: 3rem;
+}
+@media (max-width: 600px) {
+  .main_container {
+    padding: 0 1rem;
+  }
 }
 .main_container .input__box {
   padding: 0.6rem 1rem;
@@ -62,6 +77,11 @@ h6 {
   transition: 0.3s ease border;
   flex: 1;
   font-weight: 500;
+}
+@media (max-width: 600px) {
+  .main_container .input__box {
+    width: 100%;
+  }
 }
 .main_container .input__box:focus {
   border-color: black;
@@ -77,6 +97,12 @@ h6 {
   font-weight: bold;
   transition: 0.2s ease;
   gap: 0.2rem;
+}
+@media (max-width: 600px) {
+  .main_container .btn {
+    justify-content: center;
+    width: 100%;
+  }
 }
 .main_container .btn:hover {
   background: rgba(0, 0, 0, 0.8);
