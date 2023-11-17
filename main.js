@@ -57,7 +57,10 @@ function getActiveTodosReturnHtml() {
     .map((todo) => {
       return `<div class="todo flex items-center justify-between">
       <h2>${todo.title}</h2>
+      <div class="flex items-center gap-2">
+      <img width=20px" height="20px" src="/assests/editIcon.svg"/ alt="edit" onclick="editTodo('${todo.id}','1')">
       <input type="checkbox" class="myCheckbox" onchange="updateAndUpdateTheTab('2','${todo.id}')">
+      </div>
   </div>`;
     })
     .join(" ");
