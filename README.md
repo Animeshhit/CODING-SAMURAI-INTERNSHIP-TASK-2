@@ -12,4 +12,4 @@ Clone the repository.
    git clone https://github.com/Animeshhit/CODING-SAMURAI-INTERNSHIP-TASK-2.git
    ```
 ## Live Preview
-- [click here]("https:")
+- [click here]("https://coding-samurai-internship-task-2-eight.vercel.app/")
