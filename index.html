@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="main.js" defer></script>
+    <title>To Do Application</title>
+  </head>
+  <body>
+    <!-- App heading -->
+    <h2 class="Title">Todo List App</h2>
+    <!-- Main centered Container  -->
+    <div class="main_container">
+      <!-- For new Task Creation Container  -->
+      <div class="flex items-center justify-between gap-2">
+        <input type="text" placeholder="Create A New Task" class="input__box" />
+        <button type="button" class="btn flex items-center">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="24"
+            viewBox="0 -960 960 960"
+            width="24"
+            fill="white"
+          >
+            <path
+              d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z"
+            />
+          </svg>
+          <span>Add Task</span>
+        </button>
+      </div>
+      <!-- Todo Sections  -->
+      <div class="sections flex items-center justify-between">
+        <div class="sections_items" data-id="1">All</div>
+        <div class="sections_items" data-id="2">Pending</div>
+        <div class="sections_items" data-id="3">Completed</div>
+      </div>
+      <div class="view"></div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,129 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Poppins:wght@500;600;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Inter", sans-serif;
+}
+
+.heading-font {
+  font-family: "Inter", sans-serif;
+}
+
+.flex {
+  display: flex;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.gap-2 {
+  gap: 1rem;
+}
+
+.Title {
+  font-weight: bold;
+  margin-top: 4rem;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.main_container {
+  width: 100%;
+  max-width: 500px;
+  display: block;
+  margin: 0 auto;
+  margin-top: 3rem;
+  .input__box {
+    padding: 0.6rem 1rem;
+    border: none;
+    outline: none;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    border-radius: 25px;
+    transition: 0.3s ease border;
+    flex: 1;
+    font-weight: 500;
+    &:focus {
+      border-color: black;
+    }
+  }
+  .btn {
+    padding: 0.6rem 1rem;
+    border-radius: 25px;
+    border: none;
+    outline: none;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s ease;
+    gap: 0.2rem;
+    &:hover {
+      background: rgba(0, 0, 0, 0.8);
+    }
+  }
+  .sections {
+    margin-top: 2rem;
+    .sections_items {
+      border-bottom: 2px solid transparent;
+      padding: 0.2rem 0;
+      color: rgba(0, 0, 0, 0.5);
+      transition: 0.3s ease;
+      cursor: pointer;
+      &.active {
+        color: black;
+        border-color: black;
+      }
+      &:hover {
+        color: black;
+      }
+    }
+  }
+  .view {
+    width: 100%;
+    margin-top:2rem;
+    p {
+      text-align: center;
+      color: rgba(0, 0, 0, 0.5);
+    }
+  }
+}
+
+.todo {
+  background-color: rgb(20, 20, 20);
+  border-radius: 25px;
+  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.1);
+  padding: 0.8rem 1rem;
+  margin-bottom: 1.2rem;
+  h2 {
+    font-family: "Inter", sans-serif;
+    text-transform: capitalize;
+    font-size: 1rem;
+    color: white;
+    font-weight: 400;
+  }
+  input {
+    width: 14px;
+    cursor: pointer;
+    height: 14px;
+  }
+}
